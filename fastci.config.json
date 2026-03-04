@@ -1,3 +1,10 @@
 {
-  "accept_terms": "yes"
+  "accept_terms": "yes",
+  "config": {
+    "repository_config": {
+      "insights": {
+        "create_issues": true
+      }
+    }
+  }
 }
