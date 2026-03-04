@@ -19,6 +19,8 @@
 
 name: Build and test
 permissions:
+  contents: read
+  packages: write
   issues: write
 
 on:
@@ -436,6 +438,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       packages: write
+      contents: read
+      issues: write
     steps:
       - uses: jfrog-fastci/fastci@v0
       - name: Login to GitHub Container Registry

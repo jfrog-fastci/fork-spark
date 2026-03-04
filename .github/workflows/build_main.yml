@@ -19,6 +19,8 @@
 
 name: "Build"
 permissions:
+  contents: read
+  packages: write
   issues: write
 
 on:
@@ -29,6 +31,7 @@ on:
 jobs:
   call-build-and-test:
     permissions:
+      contents: read
       packages: write
       issues: write
     name: Run
