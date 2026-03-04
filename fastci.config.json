@@ -1,10 +1,7 @@
 {
+  "$schema": "https://raw.githubusercontent.com/jfrog-fastci/fastci/main/schema/fastci.config.schema.json",
   "accept_terms": "yes",
-  "config": {
-    "repository_config": {
-      "insights": {
-        "create_issues": true
-      }
-    }
+  "insights": {
+    "create_issues": true
   }
 }
