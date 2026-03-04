@@ -29,7 +29,7 @@ ENV FULL_REFRESH_DATE=20260210
 ENV DEBIAN_FRONTEND=noninteractive
 ENV DEBCONF_NONINTERACTIVE_SEEN=true
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     ca-certificates \
     curl \
@@ -56,10 +56,10 @@ ENV VIRTUAL_ENV=/opt/spark-venv
 RUN python3.12 -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
-ARG BASIC_PIP_PKGS="numpy pyarrow>=23.0.0 six==1.16.0 pandas==2.3.3 scipy plotly<6.0.0 mlflow>=2.8.1 coverage matplotlib openpyxl memory-profiler>=0.61.0 scikit-learn>=1.3.2 pystack>=1.6.0 psutil"
-ARG CONNECT_PIP_PKGS="grpcio==1.76.0 grpcio-status==1.76.0 protobuf==6.33.5 googleapis-common-protos==1.71.0 zstandard==0.25.0 graphviz==0.20.3"
+ENV BASIC_PIP_PKGS="numpy pyarrow>=23.0.0 six==1.16.0 pandas==2.3.3 scipy plotly<6.0.0 mlflow>=2.8.1 coverage matplotlib openpyxl memory-profiler>=0.61.0 scikit-learn>=1.3.2 pystack>=1.6.0 psutil"
+ENV CONNECT_PIP_PKGS="grpcio==1.76.0 grpcio-status==1.76.0 protobuf==6.33.5 googleapis-common-protos==1.71.0 zstandard==0.25.0 graphviz==0.20.3"
 
-RUN python3.12 -m pip install $BASIC_PIP_PKGS unittest-xml-reporting $CONNECT_PIP_PKGS lxml && \
-    python3.12 -m pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu && \
-    python3.12 -m pip install torcheval && \
+RUN python3.12 -m pip install --no-cache-dir $BASIC_PIP_PKGS unittest-xml-reporting $CONNECT_PIP_PKGS lxml && \
+    python3.12 -m pip install --no-cache-dir torch torchvision --index-url https://download.pytorch.org/whl/cpu && \
+    python3.12 -m pip install --no-cache-dir torcheval && \
     python3.12 -m pip cache purge

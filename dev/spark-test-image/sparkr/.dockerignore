@@ -1,0 +1,56 @@
+# Version control
+.git/
+.gitignore
+.svn/
+
+# R/Python
+__pycache__/
+*.py[cod]
+*.pyc
+.venv/
+venv/
+env/
+ENV/
+
+# Dependencies
+node_modules/
+vendor/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+target/
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Test and documentation
+tests/
+test/
+docs/
+*.md
+!README.md
+
+# CI/CD and config
+.github/
+.gitlab-ci.yml
+Jenkinsfile
+Makefile
+
+# Sensitive files
+.env*
+*.pem
+*.key
+credentials.*
+secrets.*
+
+# Logs and temp files
+*.log
+tmp/
+temp/
+

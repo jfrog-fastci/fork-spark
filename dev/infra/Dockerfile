@@ -92,7 +92,7 @@ RUN mkdir -p /usr/local/pypy/pypy3.10 && \
     ln -sf /usr/local/pypy/pypy3.10/bin/pypy /usr/local/bin/pypy3.10 && \
     ln -sf /usr/local/pypy/pypy3.10/bin/pypy /usr/local/bin/pypy3
 RUN curl -sS https://bootstrap.pypa.io/get-pip.py | pypy3
-RUN pypy3 -m pip install numpy 'six==1.16.0' 'pandas==2.3.3' scipy coverage matplotlib lxml
+RUN pypy3 -m pip install --no-cache-dir numpy 'six==1.16.0' 'pandas==2.3.3' scipy coverage matplotlib lxml
 
 
 ARG BASIC_PIP_PKGS="numpy pyarrow>=18.0.0 six==1.16.0 pandas==2.3.3 scipy plotly>=4.8 mlflow>=2.8.1 coverage matplotlib openpyxl memory-profiler>=0.61.0 scikit-learn>=1.3.2"
@@ -111,7 +111,7 @@ RUN python3.10 -m pip install $BASIC_PIP_PKGS unittest-xml-reporting $CONNECT_PI
 # Install Python 3.9
 RUN add-apt-repository ppa:deadsnakes/ppa
 RUN apt-get update && apt-get install -y \
-    python3.9 python3.9-distutils \
+    --no-install-recommends python3.9 python3.9-distutils \
     && rm -rf /var/lib/apt/lists/*
 RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python3.9
 RUN python3.9 -m pip install --ignore-installed 'blinker>=1.6.2' # mlflow needs this

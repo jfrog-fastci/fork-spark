@@ -29,7 +29,7 @@ ENV FULL_REFRESH_DATE=20260210
 ENV DEBIAN_FRONTEND=noninteractive
 ENV DEBCONF_NONINTERACTIVE_SEEN=true
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     ca-certificates \
     curl \
@@ -66,7 +66,7 @@ RUN apt-get update && apt-get install -y \
 RUN Rscript -e "install.packages(c('devtools', 'knitr', 'markdown', 'rmarkdown', 'testthat'), repos='https://cloud.r-project.org/')" \
     && Rscript -e "devtools::install_version('pkgdown', version='2.0.1', repos='https://cloud.r-project.org')" \
     && Rscript -e "devtools::install_version('preferably', version='0.4', repos='https://cloud.r-project.org')" \
-    && Rscript -e "devtools::install_version('lintr', version='2.0.1', repos='https://cloud.r-project.org')" \
+    && Rscript -e "devtools::install_version('lintr', version='2.0.1', repos='https://cloud.r-project.org')"
 
 # See more in SPARK-39735
 ENV R_LIBS_SITE="/usr/local/lib/R/site-library:${R_LIBS_SITE}:/usr/lib/R/library"
@@ -76,7 +76,7 @@ ENV VIRTUAL_ENV=/opt/spark-venv
 RUN python3.12 -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
-RUN python3.12 -m pip install \
+RUN python3.12 -m pip install --no-cache-dir \
     'black==23.12.1' \
     'flake8==3.9.0' \
     'ruff==0.14.8' \
@@ -100,6 +100,6 @@ RUN python3.12 -m pip install \
     'pytest==7.1.3' \
     'scipy>=1.8.0' \
     'scipy-stubs' \
-    && python3.12 -m pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu \
-    && python3.12 -m pip install torcheval \
+    && python3.12 -m pip install --no-cache-dir torch torchvision --index-url https://download.pytorch.org/whl/cpu \
+    && python3.12 -m pip install --no-cache-dir torcheval \
     && python3.12 -m pip cache purge
