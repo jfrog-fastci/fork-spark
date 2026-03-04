@@ -18,6 +18,8 @@
 #
 
 name: "Build"
+permissions:
+  issues: write
 
 on:
   push:
