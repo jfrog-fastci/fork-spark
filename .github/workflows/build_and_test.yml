@@ -1027,7 +1027,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 120
     steps:
-      - uses: jfrog-fastci/fastci@v0
+    - uses: jfrog-fastci/fastci@v0
     - uses: actions/checkout@v6
     - uses: actions/setup-java@v5
       with:
